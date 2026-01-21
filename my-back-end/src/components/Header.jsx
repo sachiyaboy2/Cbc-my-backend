@@ -7,8 +7,9 @@ export default function headder(){
 
                 <div className="h-full w-full flex justify-center items-center gap-[20px] text-lg">
                     <a href="/">Home</a>     
-                    <a href="/admin">Admin</a>   
-                    <a href="/register">Register</a>              
+                    <a href="/product">Product</a>   
+                    <a href="/about">About</a>     
+                    <a href="/contact">Contact</a>          
                 </div>
               </div>
               

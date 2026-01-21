@@ -7,7 +7,7 @@ function App() {
     <BrowserRouter>
       <div className="w-full h-[100vh] bg-amber-100">
         <Routes path="/">
-          <Route path="/" element={<HomePage/>} />
+          <Route path="/*" element={<HomePage/>} />
           <Route path="/register" element={<h1>Register Page</h1>} />
           <Route path="/admin/*" element={<AdminPage/>} />
         </Routes>
