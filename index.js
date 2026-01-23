@@ -4,8 +4,10 @@ import studentRouter from "./Routers/StudentsRT.js";
 import userRouter from "./Routers/userRouter.js";
 import jwt from "jsonwebtoken"
 import productRouter from "./Routers/productRouter.js";
+import cors from "cors";
 
 const app = express()
+app.use(cors())
 
 /// middle man
 app.use(express.json())

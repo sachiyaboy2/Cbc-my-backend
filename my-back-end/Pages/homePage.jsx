@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import Header from "../src/components/Header"
 export default function HomePage(){
     return(
-        <div className="w-full h-full bg-secondary">
+        <div className="w-full h-full bg-[url('/BG.jpg')] bg-cover bg-center">
             <Header/>
             <Routes path="/">
                 <Route path="/" element={<h1>Welcome to Home Page</h1>}/>
