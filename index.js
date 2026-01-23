@@ -5,6 +5,9 @@ import userRouter from "./Routers/userRouter.js";
 import jwt from "jsonwebtoken"
 import productRouter from "./Routers/productRouter.js";
 import cors from "cors";
+import dotenv from "dotenv"
+
+dotenv.config();
 
 const app = express()
 app.use(cors())
@@ -39,7 +42,7 @@ app.use(
 )
 
 
-const ConnectionString = "mongodb+srv://Sachiya:Sachiya123@cluster0.ev2jvsb.mongodb.net/?appName=Cluster0"
+const ConnectionString = process.env.Mongo_URL
 
 mongoose.connect(ConnectionString).then(
     ()=>{
