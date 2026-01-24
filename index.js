@@ -5,7 +5,7 @@ import userRouter from "./Routers/userRouter.js";
 import jwt from "jsonwebtoken"
 import productRouter from "./Routers/productRouter.js";
 import cors from "cors";
-import dotenv from "dotenv"
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -23,11 +23,11 @@ app.use(
         if(token != null){
             token = token.replace("Bearer ","")
             console.log(token)
-            jwt.verify(token,"jwt-anykey",
+            jwt.verify(token, process.env.JWT_ANY_KEY,
                 (err, decoded)=>{
                     if(decoded == null){
                         res.json({
-                            message: "Invalid token please ligin again !"
+                            message: "Invalid token please login again !"
                          })
                         return
                     }else{
@@ -53,14 +53,15 @@ mongoose.connect(ConnectionString).then(
         console.log("Data Base Not Connected")
     }
 )
-app.use("/students", studentRouter)
-app.use("/users", userRouter)
-app.use("/products", productRouter)
+    
+app.use("/api/students", studentRouter)
+app.use("/api/users", userRouter)
+app.use("/api/products", productRouter)
 
 
 
 
-app.listen(5000, 
+app.listen(5000,
     ()=>{
         console.log("server is started")
     }

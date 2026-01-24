@@ -23,10 +23,10 @@ const userScema = new mongoose.Schema(
             required: true
         },
 
-        roll : {
+        role : {
             type : String,  
             required: true,
-            default: "admin"
+            default: "user"
         },
 
         isBlock: {

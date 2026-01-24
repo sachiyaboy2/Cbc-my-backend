@@ -30,7 +30,7 @@ export function createStudents(req,res){
         return
     }
 
-    if(req.user.roll != "admin"){
+    if(req.user.role != "admin"){
         res.status(403).json({
             message: "You not Addmin @"
         })

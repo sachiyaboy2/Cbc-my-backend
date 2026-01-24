@@ -10,7 +10,8 @@ export function createUser(req,res){
             email : req.body.email,
             firstName : req.body.firstName,
             lastName : req.body.lastName,
-            password : hashedPassword
+            password : hashedPassword,
+            role: req.body.role
 
         }
     )
@@ -53,16 +54,23 @@ export function loginUser(req,res){
                             email: user.email,
                             firstName: user.firstName,
                             lastName: user.lastName,
-                            roll: user.roll,
+                            role: user.role,
                             isEmailVerified: user.isEmailVerified,
                         },
-                        "jwt-anykey"
+                        process.env.JWT_ANY_KEY,
                     )
 
                     res.json(
                         {
                             message : "Login Successfully",
                             token: token,
+                            user: {
+                                email: user.email,
+                                firstName: user.firstName,
+                                lastName: user.lastName,
+                                role: user.role,
+                                isEmailVerified: user.isEmailVerified,
+                            }
                         }
                     )
                 }else{
@@ -81,7 +89,7 @@ export function isAddmin(req){
     if(req.user == null){
         return false;
     }
-    if(req.user.roll != "admin"){
+    if(req.user.role != "admin"){
         return false;
     }
     return true;
