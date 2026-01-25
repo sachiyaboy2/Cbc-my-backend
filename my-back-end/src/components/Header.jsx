@@ -1,19 +1,43 @@
-export default function headder(){
-    return(
-        <header className="w-full bg-accent h-[10%] text-white flex">
-              <div className="w-full h-ful flex relative">
-                <a href="/">
-                <img src="/logo.png" className="h-full w-[130px] left-0 px-[20px] object-cover  absolute"/></a>
+import {Link, NavLink } from "react-router-dom";
 
-                <div className="h-full w-full flex justify-center items-center gap-[20px] text-lg">
-                    <a href="/">Home</a>     
-                    <a href="/product">Product</a>   
-                    <a href="/about">About</a>     
-                    <a href="/contact">Contact</a>          
-                </div>
-              </div>
-              
+export default function Header() {
+  return (
+    <header className="w-full h-[72px] sticky top-0 z-50 backdrop-blur-sm bg-gradient-to-r from-pink-500/90 to-rose-400/90 shadow-lg ">
+      <div className="max-w-7xl mx-auto h-full flex items-center justify-between px-6">
 
-        </header>
-    )
+        {/* Logo */}
+        <div className="flex items-center gap-2">
+         <Link to="/"><img
+            src="/logo.png"
+            alt="Logo"
+            className="h-[55px] w-auto object-contain"
+          /></Link>
+        </div>
+
+        {/* Navigation */}
+        <nav className="flex gap-10 text-white font-medium text-[17px]">
+          {[
+            { name: "Home", path: "/" },
+            { name: "Product", path: "/product" },
+            { name: "About Us", path: "/about" },
+            { name: "Contact Us", path: "/contact" },
+          ].map((item) => (
+            <NavLink
+              key={item.name}
+              to={item.path}
+              className={({ isActive }) =>
+                `relative transition-all duration-300 
+                 after:content-[''] after:absolute after:left-0 after:-bottom-1 
+                 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300
+                 hover:after:w-full
+                 ${isActive ? "after:w-full font-semibold" : ""}`
+              }
+            >
+              {item.name}
+            </NavLink>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
 }

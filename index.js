@@ -39,8 +39,7 @@ app.use(
         next()
     }
 
-)
-
+) 
 
 const ConnectionString = process.env.Mongo_URL
 
@@ -66,4 +65,5 @@ app.listen(5000,
         console.log("server is started")
     }
 )
+
 

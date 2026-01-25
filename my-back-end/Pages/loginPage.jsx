@@ -1,21 +1,25 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   async function login() {
     try{
       const response = await axios.post(
       import.meta.env.VITE_API_URL + "/api/users/login",
-      { email, password }
+      { email : email, password : password }
     );
+    
+    localStorage.setItem("token", response.data.token);
+
     const user = response.data.user;
-    if (user.roll == "admin"){
-      window.location.href = "/admin"
+    if (user.role == "admin"){
+      navigate("/admin")
     } else {
-      window.location.href = "/"
+      navigate("/")
     }
 
     }catch(e){
