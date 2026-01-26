@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
@@ -13,8 +14,8 @@ export default function LoginPage() {
       { email : email, password : password }
     );
     
-    localStorage.setItem("token", response.data.token);
-
+    localStorage.setItem("token", response.data.token);    
+    toast.success("Login Succesfully")
     const user = response.data.user;
     if (user.role == "admin"){
       navigate("/admin")
@@ -24,6 +25,7 @@ export default function LoginPage() {
 
     }catch(e){
       console.error("Login Fail", e)
+      toast.error("Login Faild")
     }
   }
 
